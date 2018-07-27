@@ -54,12 +54,12 @@ class Customer
             if (($rental->getMovie()->getPriceCode() == Movie::NEW_RELEASE) && $rental->getDaysRented() > 1) {
                 $frequentRenterPoints++;
             }
-
-            $result .= "Amount owed is " . $totalAmount . "\n";
-            $result .= "You earned $frequentRenterPoints frequent renter points";
-
-            return $result;
         }
+
+        $result .= "Amount owed is " . $totalAmount . "\n";
+        $result .= "You earned $frequentRenterPoints frequent renter points";
+
+        return $result;
 
     }
 }
