@@ -1,5 +1,7 @@
 <?php
 
+namespace VideoClub;
+
 class Rental
 {
     /** @var Movie */

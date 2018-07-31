@@ -1,0 +1,26 @@
+{
+    "name": "ishol/refactoring",
+    "description": "Code of 'Refactoring: Improving the Design of Existing Code' book.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ignacio Sánchez",
+            "email": "chet161984@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7.2"
+    }
+}

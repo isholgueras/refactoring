@@ -1,5 +1,7 @@
 <?php
 
+namespace VideoClub;
+
 class Movie
 {
     const CHILDRENS = 2;
