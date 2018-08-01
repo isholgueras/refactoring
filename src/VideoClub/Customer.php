@@ -5,6 +5,9 @@ namespace VideoClub;
 class Customer
 {
     private $name;
+    /**
+     * @var Rental[]
+     */
     private $rentals = [];
 
     public function __construct($name)
@@ -24,23 +27,44 @@ class Customer
 
     public function statement()
     {
-        $totalAmount = 0;
-        $frequentRenterPoints = 0;
-        $rentals = $this->rentals;
         $result = "Rental record for " . $this->getName() . "\n";
 
         /** @var Rental $each */
-        foreach ($rentals as $each) {
-
-            $frequentRenterPoints += $each->getFrequentRenterPoints();
-
+        foreach ($this->rentals as $each) {
             $result .= "\t" . $each->getMovie()->getTitle() . "\t" . $each->getCharge() . "\n";
-            $totalAmount += $each->getCharge();
         }
 
-        $result .= "Amount owed is " . $totalAmount . "\n";
-        $result .= "You earned $frequentRenterPoints frequent renter points";
+        $result .= "Amount owed is " . $this->getTotalCharge() . "\n";
+        $result .= "You earned " . $this->getTotalFrequentRenterPoints() . " frequent renter points";
 
+        return $result;
+    }
+
+    /**
+     * Calculate the total charge
+     *
+     * @return int
+     */
+    public function getTotalCharge()
+    {
+        $result = 0;
+        foreach ($this->rentals as $rental) {
+            $result += $rental->getCharge();
+        }
+        return $result;
+    }
+
+    /**
+     * Calculate all frequent renter points
+     *
+     * @return int
+     */
+    public function getTotalFrequentRenterPoints()
+    {
+        $result = 0;
+        foreach ($this->rentals as $rental) {
+            $result += $rental->getFrequentRenterPoints();
+        }
         return $result;
     }
 
