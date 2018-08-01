@@ -19,15 +19,15 @@ class CustomerTest extends TestCase
     {
         $customer = new Customer("Name");
 
-        $childrensMovie = new Movie("Childrens", Movie::CHILDRENS);
-        $oneDayChildrensRental = new Rental($childrensMovie, 1);
-        $customer->addRental($oneDayChildrensRental);
+        $childrenMovie = new Movie("Children", Movie::CHILDRENS);
+        $oneDayChildrenRental = new Rental($childrenMovie, 1);
+        $customer->addRental($oneDayChildrenRental);
         $newReleaseMovie = new Movie("New Release", Movie::NEW_RELEASE);
         $tenDayNewReleaseRental = new Rental($newReleaseMovie, 10);
         $customer->addRental($tenDayNewReleaseRental);
 
         $expectedResult = "Rental record for Name\n";
-        $expectedResult .= "\tChildrens\t1.5\n";
+        $expectedResult .= "\tChildren\t1.5\n";
         $expectedResult .= "\tNew Release\t30\n";
         $expectedResult .= "Amount owed is 31.5\n";
         $expectedResult .= "You earned 3 frequent renter points";
