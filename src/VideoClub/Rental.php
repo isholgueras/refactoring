@@ -52,4 +52,14 @@ class Rental
         }
         return $result;
     }
+
+    public function getFrequentRenterPoints() {
+        $frequentRenterPoints = 1;
+
+        if (($this->getMovie()->getPriceCode() == Movie::NEW_RELEASE) && $this->getDaysRented() > 1) {
+            $frequentRenterPoints++;
+        }
+
+        return $frequentRenterPoints;
+    }
 }
