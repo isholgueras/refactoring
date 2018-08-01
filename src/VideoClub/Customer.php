@@ -41,6 +41,7 @@ class Customer
             }
 
             $result .= "\t" . $each->getMovie()->getTitle() . "\t" . $thisAmount . "\n";
+            $totalAmount += $thisAmount;
         }
 
         $result .= "Amount owed is " . $totalAmount . "\n";
