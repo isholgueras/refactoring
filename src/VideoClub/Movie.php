@@ -9,55 +9,54 @@ class Movie
     const NEW_RELEASE = 1;
 
     private $title;
-    private $priceCode;
+    /** @var Price */
+    private $price;
 
     public function __construct($title, $priceCode)
     {
         $this->title = $title;
-        $this->priceCode = $priceCode;
+        $this->setPriceCode($priceCode);
     }
 
     public function getPriceCode()
     {
-        return $this->priceCode;
+        return $this->price->getPriceCode();
     }
 
-    public function setPriceCode($priceCode)
+    public function setPriceCode($arg)
     {
-        $this->priceCode = $priceCode;
+        switch ($arg) {
+            case self::REGULAR:
+                $this->price = new RegularPrice();
+                break;
+            case self::NEW_RELEASE:
+                $this->price = new NewReleasePrice();
+                break;
+            case self::CHILDRENS:
+                $this->price = new ChildrensPrice();
+                break;
+            default:
+                throw new \InvalidArgumentException("Incorrect Price Code");
+        }
     }
 
     public function getTitle()
     {
         return $this->title;
     }
-    
+
     /**
      * @param int $daysRented
      * @return float
      */
     public function getCharge($daysRented)
     {
-        $result = 0;
+        return $this->price->getCharge($daysRented);
+    }
 
-        switch ($this->getPriceCode()) {
-            case Movie::REGULAR:
-                $result += 2;
-                if ($daysRented > 2) {
-                    $result += ($daysRented - 2) * 1.5;
-                }
-                break;
-            case Movie::NEW_RELEASE:
-                $result += $daysRented * 3;
-                break;
-            case Movie::CHILDRENS:
-                $result += 1.5;
-                if ($daysRented > 3) {
-                    $result += ($daysRented - 3) * 1.5;
-                }
-                break;
-        }
-        return $result;
+    public function getFrequentRenterPoints($daysRented)
+    {
+        return $this->price->getFrequentRenterPoints($daysRented);
     }
 
 }

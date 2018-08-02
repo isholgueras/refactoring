@@ -63,7 +63,7 @@ class Customer
     {
         $result = 0;
         foreach ($this->rentals as $rental) {
-            $result += $rental->getFrequentRenterPoints();
+            $result += $rental->getMovie()->getFrequentRenterPoints($rental->getDaysRented());
         }
         return $result;
     }
