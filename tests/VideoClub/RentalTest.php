@@ -26,11 +26,11 @@ class RentalTest extends TestCase
     {
         $regularMovie = new Movie("regular", Movie::REGULAR);
         $oneDayRegularRental = new Rental($regularMovie, 1);
-        $oneDayRegularRentalCharge = $oneDayRegularRental->getCharge();
+        $oneDayRegularRentalCharge = $regularMovie->getCharge(1);
         $this->assertEquals(2, $oneDayRegularRentalCharge);
 
         $tenDayRegularRental = new Rental($regularMovie, 10);
-        $tenDayRegularRentalCharge = $tenDayRegularRental->getCharge();
+        $tenDayRegularRentalCharge = $regularMovie->getCharge(10);
         $this->assertEquals(14, $tenDayRegularRentalCharge);
     }
 
@@ -38,11 +38,11 @@ class RentalTest extends TestCase
     {
         $newReleaseMovie = new Movie("new release", Movie::NEW_RELEASE);
         $oneDayNewReleaseRental = new Rental($newReleaseMovie, 1);
-        $oneDayNewReleaseRentalCharge = $oneDayNewReleaseRental->getCharge();
+        $oneDayNewReleaseRentalCharge = $newReleaseMovie->getCharge(1);
         $this->assertEquals(3, $oneDayNewReleaseRentalCharge);
 
         $tenDayNewReleaseRental = new Rental($newReleaseMovie, 10);
-        $tenDayNewReleaseRentalCharge = $tenDayNewReleaseRental->getCharge();
+        $tenDayNewReleaseRentalCharge = $newReleaseMovie->getCharge(10);
         $this->assertEquals(30, $tenDayNewReleaseRentalCharge);
     }
 
@@ -50,19 +50,19 @@ class RentalTest extends TestCase
     {
         $ChildrensMovie = new Movie("Childrens", Movie::CHILDRENS);
         $oneDayChildrensRental = new Rental($ChildrensMovie, 1);
-        $oneDayChildrensRentalCharge = $oneDayChildrensRental->getCharge();
+        $oneDayChildrensRentalCharge = $ChildrensMovie->getCharge(1);
         $this->assertEquals(1.5, $oneDayChildrensRentalCharge);
 
         $threeDayChildrensRental = new Rental($ChildrensMovie, 3);
-        $threeDayChildrensRentalCharge = $threeDayChildrensRental->getCharge();
+        $threeDayChildrensRentalCharge = $ChildrensMovie->getCharge(3);
         $this->assertEquals(1.5, $threeDayChildrensRentalCharge);
 
         $fourDayChildrensRental = new Rental($ChildrensMovie, 4);
-        $fourDayChildrensRentalCharge = $fourDayChildrensRental->getCharge();
+        $fourDayChildrensRentalCharge = $ChildrensMovie->getCharge(4);
         $this->assertEquals(3, $fourDayChildrensRentalCharge);
 
         $tenDayChildrensRental = new Rental($ChildrensMovie, 10);
-        $tenDayChildrensRentalCharge = $tenDayChildrensRental->getCharge();
+        $tenDayChildrensRentalCharge = $ChildrensMovie->getCharge(10);
         $this->assertEquals(12, $tenDayChildrensRentalCharge);
     }
 }
